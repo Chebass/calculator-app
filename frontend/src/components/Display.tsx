@@ -8,8 +8,6 @@ interface DisplayProps {
   entry: string
   expression: string
   error: ApiErrorBody | null
-  loading: boolean
-  latencyMs: number | null
   resultId: number
 }
 
@@ -20,7 +18,7 @@ function sizeClass(length: number): string {
   return 'text-2xl sm:text-3xl'
 }
 
-export function Display({ entry, expression, error, loading, latencyMs, resultId }: DisplayProps) {
+export function Display({ entry, expression, error, resultId }: DisplayProps) {
   const reduce = useReducedMotion()
   const [copied, setCopied] = useState(false)
   const shown = withGrouping(entry)
@@ -40,9 +38,6 @@ export function Display({ entry, expression, error, loading, latencyMs, resultId
     }
   }
 
-  const status = error ? 'Error' : loading ? 'Calculating' : 'Ready'
-  const statusColor = error ? 'bg-danger' : loading ? 'bg-accent animate-pulse' : 'bg-ok'
-
   return (
     <motion.section
       aria-label="Calculator display"
@@ -50,18 +45,7 @@ export function Display({ entry, expression, error, loading, latencyMs, resultId
       animate={error && !reduce ? { x: [0, -10, 10, -7, 7, -3, 0] } : { x: 0 }}
       transition={{ duration: 0.45 }}
     >
-      <div className="flex items-center justify-between gap-2 text-xs">
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-edge px-2.5 py-1 font-display font-medium uppercase tracking-wider text-ink-muted">
-            <span className={`size-1.5 rounded-full ${statusColor}`} />
-            {status}
-          </span>
-          {latencyMs !== null && !error && (
-            <span className="hidden rounded-full border border-edge px-2.5 py-1 font-display tabular-nums text-ink-muted sm:inline">
-              {latencyMs < 10 ? latencyMs.toFixed(1) : Math.round(latencyMs)} ms
-            </span>
-          )}
-        </div>
+      <div className="flex items-center justify-end gap-2 text-xs">
         <button
           type="button"
           onClick={copy}

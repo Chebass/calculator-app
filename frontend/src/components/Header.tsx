@@ -25,8 +25,8 @@ export function Header({ theme, onToggleTheme, onOpenHistory, historyCount }: He
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
       >
-        <span className="grid size-11 place-items-center rounded-2xl bg-accent text-accent-ink shadow-[0_8px_24px_-8px_var(--accent-glow)]">
-          <LogoMark />
+        <span className="grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-accent-soft to-accent text-accent-ink shadow-[0_8px_24px_-8px_var(--accent-glow),inset_0_1px_0_rgb(255_255_255/0.45)]">
+          <LogoMark width={24} height={24} />
         </span>
         <div className="leading-tight">
           <h1 className="font-display text-xl font-semibold tracking-tight">SezzleMath</h1>

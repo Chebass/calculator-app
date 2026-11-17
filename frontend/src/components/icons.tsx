@@ -81,7 +81,11 @@ export const CloseIcon = (p: IconProps) => (
 )
 
 export const LogoMark = (p: IconProps) => (
+  // The four basic operations (+ − × =) in a 2×2 grid.
   <Icon {...p} strokeWidth="2.2">
-    <path d="M6 8h12M6 12.5h5M6 17h5M16 13v5M13.5 15.5h5" />
+    <path d="M7 4.2v5.6M4.2 7h5.6" />
+    <path d="M14.2 7h5.6" />
+    <path d="M4.6 14.6l4.8 4.8M9.4 14.6l-4.8 4.8" />
+    <path d="M14.2 15.7h5.6M14.2 18.3h5.6" />
   </Icon>
 )

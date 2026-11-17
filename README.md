@@ -202,6 +202,6 @@ services/history-service/      cmd/server, internal/{history,store,calcclient,ha
 frontend/                      src/{api,hooks,lib,components,test}, nginx.conf.template
 Dockerfile                     all-in-one image
 docker-compose.yml             multi-container stack
-stitch_calculator_app/         design mockups and DESIGN.md files used as visual reference
+stitch_calculator_app/         design mockups (images only), used as visual reference
 PROMPTS.md                     prompts used while building this with Claude Code
 ```

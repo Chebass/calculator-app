@@ -3,7 +3,7 @@
 @import '@fontsource-variable/plus-jakarta-sans';
 
 /*
- * Design tokens come from the mockups' DESIGN.md files:
+ * Design tokens come from the design mockups:
  *  - light = "Luminous Sand Glass", dark = "Luminous Slate Glass".
  * Components use semantic utilities (bg-panel, text-ink, ...); switching
  * `data-theme` on <html> swaps every value at once.

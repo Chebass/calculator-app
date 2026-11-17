@@ -32,7 +32,6 @@ describe('useCalculator', () => {
       result: 3500,
       expression: '250 × 14 =',
     })
-    expect(result.current.latencyMs).not.toBeNull()
   })
 
   it('computes the pending operation when chaining operators', async () => {

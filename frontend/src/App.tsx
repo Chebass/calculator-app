@@ -21,7 +21,7 @@ export default function App() {
 
   const { add: addToHistory } = history
   const onCalculated = useCallback((record: CalculationRecord) => void addToHistory(record.request), [addToHistory])
-  const { state, loading, latencyMs, press, restore } = useCalculator({ onCalculated })
+  const { state, loading, press, restore } = useCalculator({ onCalculated })
   useKeyboard(press)
 
   const restoreEntry = (entry: HistoryEntry) => {
@@ -65,8 +65,6 @@ export default function App() {
               entry={state.entry}
               expression={state.expression}
               error={state.error}
-              loading={loading}
-              latencyMs={latencyMs}
               resultId={state.resultId}
             />
             <Keypad
@@ -90,8 +88,6 @@ export default function App() {
             </motion.div>
           )}
         </main>
-
-        <footer className="py-6 text-center text-xs text-ink-muted">SezzleMath · React + Go microservices</footer>
       </div>
 
       <AnimatePresence>

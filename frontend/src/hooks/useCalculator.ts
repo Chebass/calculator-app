@@ -53,7 +53,6 @@ function toError(cause: unknown): ApiErrorBody {
 export function useCalculator({ api = calculatorApi, onCalculated }: Options = {}) {
   const [state, dispatch] = useReducer(calcReducer, initialState)
   const [loading, setLoading] = useState(false)
-  const [latencyMs, setLatencyMs] = useState<number | null>(null)
 
   // Handlers read the latest state without being recreated on every keystroke.
   const stateRef = useRef<CalcState>(state)
@@ -71,10 +70,8 @@ export function useCalculator({ api = calculatorApi, onCalculated }: Options = {
       }
       busyRef.current = true
       setLoading(true)
-      const started = performance.now()
       try {
         const { result } = await api.calculate(request)
-        setLatencyMs(performance.now() - started)
         dispatch({ type: 'resolved', result, expression, next })
         onCalculated?.({ request, result, expression })
       } catch (cause) {
@@ -133,5 +130,5 @@ export function useCalculator({ api = calculatorApi, onCalculated }: Options = {
     if (!busyRef.current) dispatch({ type: 'restore', result, expression })
   }, [])
 
-  return { state, loading, latencyMs, press, restore }
+  return { state, loading, press, restore }
 }
