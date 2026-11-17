@@ -31,6 +31,8 @@ export type CalcAction =
   | { type: 'operator'; operation: BinaryOperation }
   | { type: 'resolved'; result: number; expression: string; next?: BinaryOperation }
   | { type: 'failed'; error: ApiErrorBody }
+  /** Load a past result (from history) back onto the display. */
+  | { type: 'restore'; result: number; expression: string }
 
 export const MAX_DIGITS = 15
 
@@ -58,6 +60,15 @@ export function calcReducer(state: CalcState, action: CalcAction): CalcState {
   if (action.type === 'clear') return { ...initialState, resultId: state.resultId }
   if (action.type === 'resolved') return applyResult(state, action)
   if (action.type === 'failed') return { ...state, error: action.error }
+  if (action.type === 'restore') {
+    return {
+      ...initialState,
+      entry: formatResult(action.result),
+      overwrite: true,
+      expression: action.expression,
+      resultId: state.resultId + 1,
+    }
+  }
 
   // Any other key dismisses a previous error.
   const base: CalcState = state.error ? { ...state, error: null } : state
@@ -152,14 +163,20 @@ function describeLeft(operand: number, operation: BinaryOperation): string {
   return `${withGrouping(formatResult(operand))} ${OPERATION_SYMBOL[operation]}`
 }
 
+/** Text for a calculation without the trailing "=", e.g. "250 × 14" or "√(144)". */
+export function describeRequest(request: CalculateRequest): string {
+  if (request.operation === 'sqrt') return `√(${withGrouping(formatResult(request.a))})`
+  return `${describeLeft(request.a, request.operation)} ${withGrouping(formatResult(request.b ?? 0))}`
+}
+
 /** Text for a finished binary calculation, e.g. "250 × 14 =". */
 export function describeBinary(a: number, operation: BinaryOperation, b: number): string {
-  return `${describeLeft(a, operation)} ${withGrouping(formatResult(b))} =`
+  return `${describeRequest({ operation, a, b })} =`
 }
 
 /** Text for a finished square root, e.g. "√(144) =". */
 export function describeSqrt(a: number): string {
-  return `√(${withGrouping(formatResult(a))}) =`
+  return `${describeRequest({ operation: 'sqrt', a })} =`
 }
 
 /** True when pressing "=" (or another operator) should compute `operand op entry`. */

@@ -22,6 +22,17 @@ export interface CalculateResponse {
   result: number
 }
 
+/** A stored calculation returned by the history-service. */
+export interface HistoryEntry {
+  id: number
+  operation: OperationName
+  a: number
+  b?: number
+  result: number
+  createdAt: string
+  updatedAt: string
+}
+
 /** Stable, machine-readable error returned by the services. */
 export interface ApiErrorBody {
   code: string

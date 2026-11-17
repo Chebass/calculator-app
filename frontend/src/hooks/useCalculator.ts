@@ -128,5 +128,10 @@ export function useCalculator({ api = calculatorApi, onCalculated }: Options = {
     [run],
   )
 
-  return { state, loading, latencyMs, press }
+  /** Puts a past result back on the display (used by the history panel). */
+  const restore = useCallback((result: number, expression: string) => {
+    if (!busyRef.current) dispatch({ type: 'restore', result, expression })
+  }, [])
+
+  return { state, loading, latencyMs, press, restore }
 }
