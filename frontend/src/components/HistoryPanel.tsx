@@ -34,7 +34,7 @@ export function HistoryPanel({ entries, error, loaded, onRestore, onUpdate, onRe
   const [editingId, setEditingId] = useState<number | null>(null)
 
   return (
-    <section aria-label="History" className="glass flex max-h-[calc(100dvh-8rem)] min-h-64 flex-col rounded-[2rem] p-4 sm:p-6">
+    <section aria-label="History" className="glass flex h-full min-h-0 flex-col rounded-[2rem] p-4 sm:p-6">
       <div className="mb-3 flex items-center justify-between gap-2">
         <h2 className="font-display text-xl font-semibold tracking-tight">History</h2>
         <div className="flex items-center gap-2">
@@ -75,7 +75,7 @@ export function HistoryPanel({ entries, error, loaded, onRestore, onUpdate, onRe
         </p>
       )}
 
-      <ul className="-mr-2 flex-1 space-y-2.5 overflow-y-auto overflow-x-hidden pr-2">
+      <ul className="-mr-2 scroll-themed min-h-0 flex-1 space-y-2.5 overflow-y-auto overflow-x-hidden py-3 pr-2">
         <AnimatePresence initial={false} mode="popLayout">
           {entries.map((entry) => (
             <motion.li

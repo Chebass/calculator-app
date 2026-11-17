@@ -58,7 +58,7 @@ export function Keypad({ onPress, activeOperation, disabled }: KeypadProps) {
   const reduce = useReducedMotion()
 
   return (
-    <div className="mt-4 grid grid-cols-4 gap-2.5 sm:gap-3" role="group" aria-label="Calculator keypad">
+    <div className="mt-4 grid min-h-0 flex-1 grid-cols-4 grid-rows-6 gap-2.5 sm:gap-3" role="group" aria-label="Calculator keypad">
       {KEYS.map((key) => {
         const active = activeOperation === key.id
         const isOperator = key.variant === 'op' || key.id === 'power' || key.id === 'percentage'
@@ -74,7 +74,7 @@ export function Keypad({ onPress, activeOperation, disabled }: KeypadProps) {
             whileTap={reduce ? undefined : { scale: 0.92 }}
             whileHover={reduce ? undefined : { y: -2 }}
             transition={{ type: 'spring', stiffness: 520, damping: 26 }}
-            className={`relative grid h-14 cursor-pointer place-items-center overflow-hidden rounded-full border border-edge font-display font-medium shadow-[var(--key-shadow)] transition-colors select-none disabled:cursor-wait disabled:opacity-70 sm:h-16 ${
+            className={`relative grid h-full min-h-0 cursor-pointer place-items-center overflow-hidden rounded-full border border-edge font-display font-medium shadow-[var(--key-shadow)] transition-colors select-none disabled:cursor-wait disabled:opacity-70 ${
               key.span === 2 ? 'col-span-2' : ''
             } ${VARIANT_CLASS[key.variant]} ${key.variant === 'equals' ? 'border-transparent' : ''}`}
           >

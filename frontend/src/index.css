@@ -193,3 +193,31 @@ body {
     animation: none !important;
   }
 }
+
+/* Slim, themed scrollbar with soft fades at both ends (history list). */
+.scroll-themed {
+  --thumb: color-mix(in srgb, var(--ink-muted) 40%, transparent);
+  --thumb-hover: var(--accent);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 14px, #000 calc(100% - 22px), transparent 100%);
+}
+.scroll-themed::-webkit-scrollbar {
+  width: 6px;
+}
+.scroll-themed::-webkit-scrollbar-track {
+  background: transparent;
+  margin-block: 18px;
+}
+.scroll-themed::-webkit-scrollbar-thumb {
+  background: var(--thumb);
+  border-radius: 999px;
+  transition: background-color 0.2s;
+}
+.scroll-themed::-webkit-scrollbar-thumb:hover {
+  background: var(--thumb-hover);
+}
+@supports not selector(::-webkit-scrollbar) {
+  .scroll-themed {
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumb) transparent;
+  }
+}

@@ -41,7 +41,7 @@ export function Display({ entry, expression, error, resultId }: DisplayProps) {
   return (
     <motion.section
       aria-label="Calculator display"
-      className="rounded-3xl bg-screen p-4 shadow-[var(--screen-shadow)] sm:p-6"
+      className="shrink-0 rounded-3xl bg-screen p-4 shadow-[var(--screen-shadow)] sm:p-6"
       animate={error && !reduce ? { x: [0, -10, 10, -7, 7, -3, 0] } : { x: 0 }}
       transition={{ duration: 0.45 }}
     >

@@ -45,7 +45,7 @@ export default function App() {
   return (
     <>
       <div className="ambient" aria-hidden="true" />
-      <div className="mx-auto flex min-h-dvh max-w-5xl flex-col px-4 md:px-10">
+      <div className="mx-auto flex h-dvh min-h-[34rem] max-w-5xl flex-col px-4 md:px-10">
         <Header
           theme={theme}
           onToggleTheme={toggle}
@@ -53,10 +53,10 @@ export default function App() {
           historyCount={history.entries.length}
         />
 
-        <main className="grid flex-1 content-start items-start gap-6 pb-10 lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)]">
+        <main className="grid min-h-0 flex-1 grid-rows-[minmax(0,1fr)] gap-6 pb-4 sm:pb-6 lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)]">
           <motion.section
             aria-label="Calculator"
-            className="glass mx-auto w-full max-w-[560px] rounded-[2rem] p-4 sm:p-6 lg:mx-0"
+            className="glass mx-auto flex h-full min-h-0 w-full max-w-[560px] flex-col rounded-[2rem] p-4 sm:p-6 lg:mx-0"
             initial={reduce ? false : { opacity: 0, y: 24, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -72,7 +72,7 @@ export default function App() {
               activeOperation={state.awaitingOperand ? state.operation : null}
               disabled={loading}
             />
-            <p className="mt-4 hidden text-center text-xs text-ink-muted sm:block">
+            <p className="mt-3 hidden shrink-0 text-center text-xs text-ink-muted sm:block [@media(max-height:760px)]:hidden">
               Press <kbd className="font-display">Enter</kbd> to calculate · <kbd className="font-display">Esc</kbd> to
               clear
             </p>
@@ -80,6 +80,7 @@ export default function App() {
 
           {isDesktop && (
             <motion.div
+              className="h-full min-h-0"
               initial={reduce ? false : { opacity: 0, x: 24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
