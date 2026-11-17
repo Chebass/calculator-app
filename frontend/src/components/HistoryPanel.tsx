@@ -75,7 +75,7 @@ export function HistoryPanel({ entries, error, loaded, onRestore, onUpdate, onRe
         </p>
       )}
 
-      <ul className="-mr-2 scroll-themed min-h-0 flex-1 space-y-2.5 overflow-y-auto overflow-x-hidden py-3 pr-2">
+      <ul className="relative -mr-2 scroll-themed min-h-0 flex-1 space-y-2.5 overflow-y-auto overflow-x-hidden py-3 pr-2">
         <AnimatePresence initial={false} mode="popLayout">
           {entries.map((entry) => (
             <motion.li

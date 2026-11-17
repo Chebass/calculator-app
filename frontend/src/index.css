@@ -221,3 +221,13 @@ body {
     scrollbar-color: var(--thumb) transparent;
   }
 }
+
+/* The app is exactly one viewport tall, so the page itself never scrolls
+   (transient overflow from exit animations would otherwise flash a scrollbar).
+   Very short windows keep normal scrolling. */
+@media (min-height: 34rem) {
+  html,
+  body {
+    overflow: hidden;
+  }
+}
