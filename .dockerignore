@@ -1,0 +1,7 @@
+.git
+**/node_modules
+**/dist
+**/coverage
+stitch_calculator_app
+**/data
+**/*.db

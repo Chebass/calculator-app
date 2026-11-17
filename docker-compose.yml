@@ -1,0 +1,33 @@
+# One command runs the whole stack:  docker compose up --build   ->  http://localhost:8080
+name: sezzlemath
+
+services:
+  calculator-service:
+    build: ./services/calculator-service
+    restart: unless-stopped
+
+  history-service:
+    build: ./services/history-service
+    restart: unless-stopped
+    environment:
+      CALCULATOR_URL: http://calculator-service:8081
+      DB_PATH: /data/history.db
+    volumes:
+      - history-data:/data
+    depends_on:
+      calculator-service:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      calculator-service:
+        condition: service_healthy
+      history-service:
+        condition: service_healthy
+
+volumes:
+  history-data:
