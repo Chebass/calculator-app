@@ -20,7 +20,12 @@ export function useHistory(api: HistoryApi = historyApi) {
     let cancelled = false
     api
       .list()
-      .then((list) => !cancelled && setEntries(list))
+      .then(
+        (list) =>
+          !cancelled &&
+          // Keep anything added while the list was loading (it is newer than the snapshot).
+          setEntries((current) => [...current, ...list.filter((e) => !current.some((c) => c.id === e.id))]),
+      )
       .catch((cause: unknown) => !cancelled && setError(messageOf(cause)))
       .finally(() => !cancelled && setLoaded(true))
     return () => {

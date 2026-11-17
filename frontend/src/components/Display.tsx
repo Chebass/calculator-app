@@ -76,17 +76,22 @@ export function Display({ entry, expression, error, resultId }: DisplayProps) {
       </div>
 
       <div className="overflow-hidden pb-1 text-right">
-        <motion.output
-          key={resultId}
+        {/* The live region stays mounted so screen readers announce changes; only the inner text animates. */}
+        <output
           aria-label="Result"
           aria-live="polite"
-          initial={reduce || resultId === 0 ? false : { opacity: 0, y: 16, filter: 'blur(6px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          transition={{ type: 'spring', stiffness: 380, damping: 28 }}
           className={`block font-display font-medium tabular-nums tracking-tight ${sizeClass(shown.length)} ${error ? 'text-ink-muted' : ''}`}
         >
-          {shown}
-        </motion.output>
+          <motion.span
+            key={resultId}
+            className="block"
+            initial={reduce || resultId === 0 ? false : { opacity: 0, y: 16, filter: 'blur(6px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+          >
+            {shown}
+          </motion.span>
+        </output>
       </div>
 
       <AnimatePresence initial={false}>

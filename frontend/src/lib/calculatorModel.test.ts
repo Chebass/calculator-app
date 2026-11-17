@@ -37,6 +37,11 @@ describe('typing', () => {
     expect(run([...digits('1'), { type: 'backspace' }]).entry).toBe('0')
     expect(run([...digits('1'), { type: 'negate' }, { type: 'backspace' }]).entry).toBe('0')
   })
+  it('does not trim a result in exponent notation', () => {
+    const result = run([{ type: 'resolved', result: 1e21, expression: '' }])
+    expect(result.entry).toBe('1e+21')
+    expect(calcReducer(result, { type: 'backspace' })).toBe(result)
+  })
   it('keeps typing after a negative zero-ish entry', () => {
     expect(calcReducer({ ...initialState, entry: '-0' }, { type: 'digit', digit: '4' }).entry).toBe('-4')
   })

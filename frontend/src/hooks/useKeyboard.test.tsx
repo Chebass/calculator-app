@@ -49,6 +49,18 @@ describe('useKeyboard', () => {
     fireEvent.keyDown(getByLabelText('field'), { key: '1' })
     expect(press).not.toHaveBeenCalled()
   })
+  it('treats Enter on a focused keypad key as "equals"', () => {
+    const press = vi.fn()
+    const { getByText } = render(
+      <>
+        <Harness press={press} />
+        <button data-key="3">3</button>
+      </>,
+    )
+    const notCancelled = fireEvent.keyDown(getByText('3'), { key: 'Enter' })
+    expect(press).toHaveBeenCalledWith('equals')
+    expect(notCancelled).toBe(false) // default prevented, so the browser will not also click "3"
+  })
   it('lets Enter activate a focused button natively', () => {
     const press = vi.fn()
     const { getByText } = render(<Harness press={press} />)

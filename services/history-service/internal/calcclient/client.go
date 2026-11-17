@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"net/http"
 	"strings"
 	"time"
@@ -71,7 +72,8 @@ func (c *Client) Calculate(ctx context.Context, operation string, a float64, b *
 	defer resp.Body.Close()
 
 	var out response
-	if err := json.NewDecoder(resp.Body).Decode(&out); err != nil {
+	// A calculation response is a few dozen bytes; never buffer more than 64 KiB from a peer.
+	if err := json.NewDecoder(io.LimitReader(resp.Body, 64<<10)).Decode(&out); err != nil {
 		return 0, fmt.Errorf("%w: unreadable response (status %d)", ErrUnavailable, resp.StatusCode)
 	}
 	switch {

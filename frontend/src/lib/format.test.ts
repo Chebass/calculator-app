@@ -1,4 +1,20 @@
-import { formatResult, withGrouping } from './format'
+import { formatResult, parseDecimal, withGrouping } from './format'
+
+describe('parseDecimal', () => {
+  it.each([
+    ['5', 5],
+    [' -2.5 ', -2.5],
+    ['.5', 0.5],
+    ['5.', 5],
+    ['1e3', 1000],
+    ['+7', 7],
+  ])('accepts %j', (input, expected) => {
+    expect(parseDecimal(input)).toBe(expected)
+  })
+  it.each(['', '  ', '0x10', '0b11', 'Infinity', 'NaN', '1,5', '1e999', 'abc', '--1'])('rejects %j', (input) => {
+    expect(parseDecimal(input)).toBeNull()
+  })
+})
 
 describe('formatResult', () => {
   it('hides floating point noise', () => {

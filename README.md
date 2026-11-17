@@ -16,11 +16,34 @@ A full-stack calculator: a React + TypeScript frontend talking to two small Go m
                                                       history-service ──▶ SQLite file (Docker volume)
 ```
 
+| Dark | Light |
+|---|---|
+| ![SezzleMath in dark mode](docs/screenshot-dark.png) | ![SezzleMath in light mode](docs/screenshot-light.png) |
+
+## What the brief asked for, and where it lives
+
+| Requirement | Where |
+|---|---|
+| Add, subtract, multiply, divide | `calculator-service`, `internal/calculator` |
+| Optional: power, square root, percentage | same, all three implemented |
+| REST API, JSON, input validation, edge cases | [API](#api) (division by zero, negative root, overflow, malformed JSON, missing or extra operands) |
+| React UI, input validation, error handling | `frontend/src/components`, `frontend/src/lib/calculatorModel.ts` |
+| Responsive, basic mobile support | one layout down to 375 px; history becomes a slide-over drawer below 1024 px |
+| Unit tests for both layers + coverage | [Tests and coverage](#tests-and-coverage) |
+| Setup, API examples, design rationale | this file |
+| Optional: Dockerfile for the full stack | `Dockerfile` (single image) and `docker-compose.yml` (one container per service) |
+| Extra: history | `history-service` and the History panel (create, edit, delete, clear) |
+
 ## Quick start
+
+```bash
+git clone https://github.com/Chebass/calculator-app.git
+cd calculator-app
+```
 
 ### Docker (recommended)
 
-Requires Docker with Compose.
+Requires Docker with Compose. Verified with Docker 28.
 
 ```bash
 docker compose up --build
@@ -37,7 +60,7 @@ docker run --rm -p 8080:80 -v sezzlemath-data:/data sezzlemath
 
 ### Local development
 
-Requires Go 1.26+ and Node 20+ (developed on Node 24).
+Requires Go 1.26+ and Node 20+ (developed with Go 1.27 and Node 24).
 
 ```bash
 # terminal 1: calculator-service on :8081
@@ -186,13 +209,26 @@ The history-service adds `NOT_FOUND` (404), `INVALID_ID`, `INVALID_LIMIT`, `MISS
 
 **Docker.** Multi-stage builds, non-root users, health checks, and compose waits for healthy dependencies. nginx serves the SPA and proxies `/api/calc` and `/api/history`, so there is one origin and no CORS in production.
 
-## Assumptions and limits
+## Scope, assumptions and trade-offs
 
-- Numbers are IEEE-754 `float64`. Results are shown rounded to 12 significant digits so `0.1 + 0.2` reads `0.3`; the API returns the raw value.
-- Only successful calculations are saved to history. Errors are shown but not stored.
-- History has no users or authentication: it is one shared list per deployment.
-- No rate limiting or auth. A real deployment would put both behind a gateway that provides them.
-- Mockups also showed scientific, converter and matrix modes, trigonometry, parentheses and memory keys. They are out of scope here; the visual design (palette, typography, glass surfaces, layout) is taken from them.
+- **Scope.** The design mockups (made before coding, see below) also showed scientific, converter and matrix modes, trigonometry, parentheses and memory keys. I left those out on purpose: the brief asks for correctness and clarity over extra features. The mockups still drive the visual design (palette, typography, glass surfaces, layout).
+- **Numbers.** IEEE-754 `float64`. The UI rounds to 12 significant digits so `0.1 + 0.2` reads `0.3`; the API returns the raw value.
+- **History.** Only successful calculations are saved. There are no users: it is one shared list per deployment.
+- **Security.** No authentication or rate limiting. A real deployment would put both services behind a gateway that provides them. Inputs are validated, bodies are size-capped, containers run as non-root.
+- **Untested glue.** The two `cmd/server/main.go` files (wiring only) have no unit tests. The Docker stack was smoke-tested by hand through nginx (calculate, error case, history write and read, history surviving a restart).
+- **Duplication on purpose.** Middleware and config helpers are copied between the two Go services instead of shared. It keeps each service independently buildable; it would become a shared module with a third service.
+
+## What I would do next
+
+- End-to-end test (Playwright) against the compose stack, and a CI workflow running `go test`, `npm run coverage` and `docker compose build`.
+- An OpenAPI file for both services and contract tests between `history-service` and `calculator-service`.
+- Propagate the request ID from `history-service` to `calculator-service` so one user action can be traced across both logs.
+- Replace the nginx path routing with a real gateway if more services appear; add auth and rate limiting there.
+- Optional expression mode (parser with parentheses) behind a new `evaluate` operation.
+
+## Built with AI
+
+I used Claude Code throughout: planning and stack decisions, implementation, tests, Docker and documentation, plus the design mockups made beforehand with Stitch. A final AI code review and security review ran over the whole codebase; the bugs it found were fixed with regression tests. [PROMPTS.md](PROMPTS.md) describes the workflow, the prompts that shaped the project, and the mistakes I caught in AI output.
 
 ## Project layout
 
@@ -203,5 +239,5 @@ frontend/                      src/{api,hooks,lib,components,test}, nginx.conf.t
 Dockerfile                     all-in-one image
 docker-compose.yml             multi-container stack
 stitch_calculator_app/         design mockups (images only), used as visual reference
-PROMPTS.md                     prompts used while building this with Claude Code
+PROMPTS.md                     how AI tools were used, and the prompts behind the project
 ```

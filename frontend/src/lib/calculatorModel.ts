@@ -116,7 +116,8 @@ function negate(state: CalcState): CalcState {
 }
 
 function backspace(state: CalcState): CalcState {
-  if (state.awaitingOperand) return state
+  // Trimming "1e+21" character by character would silently change its value.
+  if (state.awaitingOperand || /e/i.test(state.entry)) return state
   const next = state.entry.slice(0, -1)
   const entry = next === '' || next === '-' ? '0' : next
   return { ...state, entry, overwrite: false }

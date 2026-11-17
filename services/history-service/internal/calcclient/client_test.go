@@ -63,6 +63,19 @@ func TestCalculateUnavailable(t *testing.T) {
 	}
 }
 
+func TestCalculateIgnoresOversizedResponses(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+		_, _ = w.Write([]byte(`{"result":1,"pad":"`))
+		for i := 0; i < 100; i++ {
+			_, _ = w.Write(make([]byte, 1024))
+		}
+	}))
+	defer srv.Close()
+	if _, err := New(srv.URL, nil).Calculate(context.Background(), "add", 1, ptr(1)); !errors.Is(err, ErrUnavailable) {
+		t.Errorf("got %v, want ErrUnavailable", err)
+	}
+}
+
 func TestCalculateConnectionRefused(t *testing.T) {
 	srv := httptest.NewServer(http.NotFoundHandler())
 	url := srv.URL

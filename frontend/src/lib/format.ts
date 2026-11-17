@@ -7,6 +7,19 @@ export function formatResult(value: number): string {
   return String(Number(value.toPrecision(12)))
 }
 
+const DECIMAL = /^[+-]?(\d+\.?\d*|\.\d+)(e[+-]?\d+)?$/i
+
+/**
+ * Strict decimal parser for typed input. Unlike Number(), it rejects hex/binary
+ * literals ("0x10"), "Infinity" and empty strings; surrounding spaces are fine.
+ */
+export function parseDecimal(text: string): number | null {
+  const trimmed = text.trim()
+  if (!DECIMAL.test(trimmed)) return null
+  const value = Number(trimmed)
+  return Number.isFinite(value) ? value : null
+}
+
 /** Adds thousands separators to the integer part of a numeric string for display only. */
 export function withGrouping(numeric: string): string {
   if (numeric === '' || /[eE]/.test(numeric)) return numeric

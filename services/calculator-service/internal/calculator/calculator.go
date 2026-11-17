@@ -102,6 +102,10 @@ func Calculate(op Operation, a float64, b *float64) (float64, error) {
 		result = math.Sqrt(a)
 	case Percentage:
 		result = a * *b / 100
+		if math.IsInf(result, 0) {
+			// The product overflowed but the final value may still fit: divide first.
+			result = a / 100 * *b
+		}
 	}
 
 	if math.IsNaN(result) || math.IsInf(result, 0) {

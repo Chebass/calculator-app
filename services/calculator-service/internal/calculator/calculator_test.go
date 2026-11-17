@@ -33,6 +33,7 @@ func TestCalculate(t *testing.T) {
 		{"sqrt zero", Sqrt, 0, nil, 0},
 		{"percentage", Percentage, 18, ptr(1250), 225},
 		{"percentage of zero", Percentage, 50, ptr(0), 0},
+		{"percentage when the product overflows", Percentage, 1e308, ptr(10), 1e307},
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {

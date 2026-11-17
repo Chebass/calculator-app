@@ -93,6 +93,25 @@ describe('history', () => {
     expect(screen.getByTestId('expression')).toHaveTextContent('6 × 7 =')
   })
 
+  it('does not lose a calculation made while the history is still loading', async () => {
+    const { spy } = installFakeBackend({ entries: [makeEntry({ id: 1 })] })
+    const fake = spy.getMockImplementation()!
+    let releaseList: () => void = () => {}
+    const gate = new Promise<void>((resolve) => (releaseList = resolve))
+    // Hold back only the initial GET /history response.
+    spy.mockImplementation(async (input, init) => {
+      const isList = String(input).includes('/history?') && (init?.method ?? 'GET') === 'GET'
+      if (isList) await gate
+      return fake(input, init)
+    })
+    render(<App />)
+    await pressKeys('2', 'Add', '2', 'Equals')
+    expect(await screen.findByRole('button', { name: 'Reload 2 + 2 = 4' })).toBeInTheDocument()
+    releaseList()
+    expect(await screen.findByRole('button', { name: 'Reload 1 + 2 = 3' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Reload 2 + 2 = 4' })).toBeInTheDocument()
+  })
+
   it('shows an empty state', async () => {
     installFakeBackend()
     render(<App />)
@@ -140,6 +159,10 @@ describe('history', () => {
     await user.click(within(form).getByRole('button', { name: 'Save' }))
     expect(within(form).getByRole('alert')).toHaveTextContent('First value must be a number')
 
+    await user.type(within(form).getByLabelText('First value'), '0x10')
+    await user.click(within(form).getByRole('button', { name: 'Save' }))
+    expect(within(form).getByRole('alert')).toHaveTextContent('First value must be a number')
+    await user.clear(within(form).getByLabelText('First value'))
     await user.type(within(form).getByLabelText('First value'), '4')
     await user.clear(within(form).getByLabelText('Second value'))
     await user.click(within(form).getByRole('button', { name: 'Save' }))

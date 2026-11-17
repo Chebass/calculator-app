@@ -1,7 +1,7 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useState, type FormEvent } from 'react'
 import { describeRequest, OPERATION_SYMBOL } from '../lib/calculatorModel'
-import { formatResult, withGrouping } from '../lib/format'
+import { formatResult, parseDecimal, withGrouping } from '../lib/format'
 import type { CalculateRequest, HistoryEntry, OperationName } from '../types'
 import { CloseIcon, EditIcon, TrashIcon } from './icons'
 
@@ -164,13 +164,13 @@ function EditForm({ entry, onSave, onCancel }: EditFormProps) {
 
   const submit = async (event: FormEvent) => {
     event.preventDefault()
-    const numA = Number(a)
-    const numB = Number(b)
-    if (a.trim() === '' || !Number.isFinite(numA)) return setProblem('First value must be a number.')
-    if (!unary && (b.trim() === '' || !Number.isFinite(numB))) return setProblem('Second value must be a number.')
+    const numA = parseDecimal(a)
+    const numB = parseDecimal(b)
+    if (numA === null) return setProblem('First value must be a number.')
+    if (!unary && numB === null) return setProblem('Second value must be a number.')
     setProblem(null)
     setSaving(true)
-    await onSave(unary ? { operation, a: numA } : { operation, a: numA, b: numB })
+    await onSave(unary ? { operation, a: numA } : { operation, a: numA, b: numB as number })
     setSaving(false)
   }
 

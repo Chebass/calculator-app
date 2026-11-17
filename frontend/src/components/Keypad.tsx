@@ -69,7 +69,7 @@ export function Keypad({ onPress, activeOperation, disabled }: KeypadProps) {
             aria-label={key.name}
             aria-pressed={isOperator ? active : undefined}
             data-key={key.id}
-            disabled={disabled && key.id !== 'clear'}
+            disabled={disabled}
             onClick={() => onPress(key.id)}
             whileTap={reduce ? undefined : { scale: 0.92 }}
             whileHover={reduce ? undefined : { y: -2 }}

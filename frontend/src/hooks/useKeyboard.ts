@@ -30,8 +30,10 @@ export function useKeyboard(press: (key: KeyId) => void, onPressed?: (key: KeyId
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.ctrlKey || event.metaKey || event.altKey) return
       const target = event.target as HTMLElement | null
-      // Let Enter/Space activate a focused button natively instead of double-firing.
-      if (target?.tagName === 'BUTTON' && (event.key === 'Enter' || event.key === ' ')) return
+      // Let Enter/Space activate a focused button natively (history actions, theme toggle...).
+      // Keypad keys are the exception: after clicking "3" the user still expects Enter to mean "=".
+      const isKeypadKey = target?.dataset?.key !== undefined
+      if (target?.tagName === 'BUTTON' && !isKeypadKey && (event.key === 'Enter' || event.key === ' ')) return
       if (target && /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)) return
       const key = keyFromEvent(event.key)
       if (!key) return
