@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-tint":"#efbc94","on-tertiary-container":"#322922","on-secondary-container":"#a7b8c1","on-error":"#690005","outline-variant":"#50453c","surface-dim":"#03161c","inverse-primary":"#7d5635","surface-container":"#0f2229","tertiary-fixed-dim":"#d3c3b9","tertiary":"#d3c3b9","primary-fixed":"#ffdcc2","primary-fixed-dim":"#efbc94","on-primary-fixed":"#2e1500","on-secondary-fixed-variant":"#394951","on-error-container":"#ffdad6","on-tertiary-fixed":"#221a14","secondary-fixed-dim":"#b8c9d3","secondary-fixed":"#d4e5ef","on-surface":"#d1e6ef","on-primary-container":"#402306","on-secondary":"#23333a","surface-container-highest":"#25373f","outline":"#9d8e84","surface-bright":"#293c43","error-container":"#93000a","on-tertiary":"#382e28","tertiary-fixed":"#f0dfd5","background":"#03161c","secondary-container":"#394951","inverse-surface":"#d1e6ef","tertiary-container":"#9d8f86","surface":"#03161c","surface-container-high":"#1a2d34","secondary":"#b8c9d3","on-surface-variant":"#d4c3b8","surface-container-low":"#0a1e25","on-secondary-fixed":"#0d1e25","on-tertiary-fixed-variant":"#50453d","on-primary-fixed-variant":"#623f20","on-background":"#d1e6ef","surface-variant":"#25373f","primary":"#efbc94","primary-container":"#b58863","on-primary":"#48290c","surface-container-lowest":"#001017","error":"#ffb4ab","inverse-on-surface":"#20333a"},borderRadius:{"DEFAULT":"1rem","lg":"2rem","xl":"3rem","full":"9999px"},spacing:{"space-sm":"0.5rem","space-xl":"2rem","margin-desktop":"2.5rem","space-xs":"0.25rem","margin":"1rem","gutter-desktop":"1rem","space-md":"0.75rem","space-lg":"1.25rem","gutter":"0.75rem"},fontFamily:{"display-md":["Space Grotesk"],"body-lg":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"headline-md":["Space Grotesk"],"display-lg":["Space Grotesk"],"label-sm":["Space Grotesk"],"display-lg-mobile":["Space Grotesk"],"body-md":["Plus Jakarta Sans"],"headline-lg":["Space Grotesk"],"label-lg":["Space Grotesk"],"label-md":["Space Grotesk"]},fontSize:{"display-md":["2.5rem",{"lineHeight":"3rem","letterSpacing":"-0.02em","fontWeight":"400"}],"body-lg":["1.125rem",{"lineHeight":"1.75rem","fontWeight":"400"}],"body-sm":["0.875rem",{"lineHeight":"1.25rem","fontWeight":"400"}],"headline-md":["1.375rem",{"lineHeight":"1.875rem","fontWeight":"500"}],"display-lg":["3.5rem",{"lineHeight":"4rem","letterSpacing":"-0.03em","fontWeight":"500"}],"label-sm":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0.06em","fontWeight":"600"}],"display-lg-mobile":["2.25rem",{"lineHeight":"2.75rem","letterSpacing":"-0.02em","fontWeight":"500"}],"body-md":["1rem",{"lineHeight":"1.5rem","fontWeight":"400"}],"headline-lg":["1.75rem",{"lineHeight":"2.25rem","letterSpacing":"-0.01em","fontWeight":"600"}],"label-lg":["1.125rem",{"lineHeight":"1.5rem","letterSpacing":"0.02em","fontWeight":"600"}],"label-md":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"0.04em","fontWeight":"500"}]}}}};</script></head><body class="bg-background font-body-md text-body-md text-on-surface min-h-screen selection:bg-primary-container selection:text-on-primary relative overflow-x-hidden"><div class="fixed inset-0 pointer-events-none z-0 overflow-hidden"><div class="absolute -top-[20%] left-1/4 w-[700px] h-[700px] bg-primary-container/10 rounded-full blur-[140px]"></div><div class="absolute top-1/3 -right-[15%] w-[600px] h-[600px] bg-surface-container-highest/30 rounded-full blur-[160px]"></div><div class="absolute -bottom-[20%] left-1/3 w-[800px] h-[800px] bg-surface-container-low rounded-full blur-[180px]"></div></div><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/60 backdrop-blur-2xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-7xl mx-auto px-margin lg:px-margin-desktop flex items-center justify-between"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm group" data-path="calculator" href="#"><div class="w-9 h-9 rounded-DEFAULT bg-surface-variant/40 flex items-center justify-center shadow-inner group-hover:bg-primary-container/20 transition-all"><span class="material-symbols-outlined text-primary text-[20px]">calculate</span></div><span class="font-headline-md text-headline-md font-semibold tracking-tight text-on-surface">Aura<span class="text-primary">Calc</span></span></a><nav class="hidden md:flex items-center p-space-xs rounded-full bg-surface-container-low/80 backdrop-blur-md" data-active-classes="bg-surface-container-high text-on-surface font-medium"><a aria-current="page" class="px-space-md py-space-xs rounded-full transition-colors bg-surface-container-high text-on-surface font-medium" data-path="calculator" href="#">Standard</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="scientific" href="#">Scientific</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="converter" href="#">Converter</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="matrix" href="#">Matrix</a></nav></div><div class="flex items-center gap-space-sm"><button aria-label="Toggle History Drawer" class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-low/60 hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">history</span></button><button aria-label="Toggle Theme" class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-low/60 hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">light_mode</span></button><a aria-label="Settings" class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-low/60 hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">settings</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative z-10 w-full pt-16 min-h-[calc(100vh-4rem)] flex flex-col justify-between"><div><div class="flex flex-col w-full">
+<div class="w-full max-w-7xl mx-auto px-margin lg:px-margin-desktop py-space-lg">
+<!-- Top Atmospheric Bar / Precision Status -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm mb-space-lg">
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-space-xs px-space-md py-1 rounded-full bg-surface-container-high/80 text-primary font-label-sm text-label-sm shadow-sm backdrop-blur-md">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+          RAD MODE • 64-BIT PRECISION
+        </span>
+<span class="inline-flex items-center gap-space-xs px-space-md py-1 rounded-full bg-surface-container/60 text-secondary font-label-sm text-label-sm backdrop-blur-md">
+<span class="material-symbols-outlined text-[14px]">memory</span>
+          M: [1.61803]
+        </span>
+</div>
+<!-- Quick Mode Switcher & Session Controls -->
+<div class="flex items-center gap-space-sm">
+<div class="flex p-space-xs rounded-full bg-surface-container-low/90 backdrop-blur-xl shadow-inner">
+<button class="px-space-md py-1 rounded-full font-label-sm text-label-sm text-on-surface bg-surface-container-high shadow-sm transition-all" id="modeStandard">Standard</button>
+<button class="px-space-md py-1 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-all" id="modeScientific">Scientific</button>
+<button class="px-space-md py-1 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-all" id="modeProgrammer">Consts</button>
+</div>
+<button class="p-2 rounded-full bg-surface-container-low/70 hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" id="clearTapeBtn" title="Clear Tape">
+<span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+</button>
+</div>
+</div>
+<!-- Main Dual-Chamber Chassis -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Chamber 1: Core Precision Calculator Glass Chassis -->
+<div class="lg:col-span-8 flex flex-col rounded-xl bg-surface-container-low/60 backdrop-blur-2xl p-space-lg shadow-2xl relative overflow-hidden">
+<!-- Ambient Inner Light Flares -->
+<div class="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-primary-container/15 blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-surface-container-highest/20 blur-3xl pointer-events-none"></div>
+<!-- Inset Recessed Display Deck -->
+<div class="relative w-full rounded-lg bg-surface-container-lowest/80 backdrop-blur-xl p-space-lg shadow-inner mb-space-lg flex flex-col justify-between min-h-[160px]">
+<!-- Top Row: Operational Tags & Syntax Health -->
+<div class="flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="flex items-center gap-1 text-[11px] font-label-sm tracking-wider uppercase px-space-sm py-0.5 rounded-full bg-surface-container-high text-primary font-medium" id="syntaxBadge">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span>SYNTAX VALID</span>
+</span>
+<span class="text-tertiary/60 font-label-sm text-[11px] uppercase tracking-wider hidden sm:inline-block">FLOAT: AUTO</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<button class="flex items-center gap-1 hover:text-primary transition-colors py-1 px-space-xs" id="copyResultBtn" title="Copy Output">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+<span class="text-[11px] uppercase">Copy</span>
+</button>
+</div>
+</div>
+<!-- Middle Row: Formula Syntax Stream -->
+<div class="w-full overflow-x-auto text-right py-1 mt-2">
+<div class="font-headline-md text-headline-md text-tertiary tracking-wide font-normal whitespace-nowrap" id="expressionDisplay">
+              250 × 14 + √(144) ^ 2
+            </div>
+</div>
+<!-- Main Hero Output / Input Line -->
+<div class="w-full flex items-baseline justify-end gap-space-xs overflow-x-hidden pt-1">
+<div class="font-display-lg text-display-lg text-on-surface tracking-tight font-medium text-right drop-shadow-sm select-all" id="mainDisplay">
+              3,644
+            </div>
+<span class="w-1 h-10 bg-primary/70 rounded-full animate-pulse self-center"></span>
+</div>
+</div>
+<!-- Keypad Interactive Matrix -->
+<div class="w-full flex flex-col gap-gutter">
+<!-- Row 1: Specialized Extended Function Row -->
+<div class="grid grid-cols-6 gap-gutter">
+<button class="h-14 rounded-DEFAULT bg-surface-container-highest/40 hover:bg-surface-container-highest/80 active:scale-95 text-primary font-headline-md text-headline-md flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-action="all-clear">
+              AC
+            </button>
+<button class="h-14 rounded-DEFAULT bg-surface-container-highest/40 hover:bg-surface-container-highest/80 active:scale-95 text-on-surface font-headline-md text-headline-md flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-action="delete">
+<span class="material-symbols-outlined text-[22px]">backspace</span>
+</button>
+<button class="calc-btn h-14 rounded-DEFAULT bg-surface-container/70 hover:bg-surface-container-high active:scale-95 text-tertiary font-headline-md text-headline-md flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val="(">
+              (
+            </button>
+<button class="calc-btn h-14 rounded-DEFAULT bg-surface-container/70 hover:bg-surface-container-high active:scale-95 text-tertiary font-headline-md text-headline-md flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val=")">
+              )
+            </button>
+<button class="calc-btn h-14 rounded-DEFAULT bg-surface-container/70 hover:bg-surface-container-high active:scale-95 text-tertiary font-headline-md text-headline-md flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val="%">
+              %
+            </button>
+<button class="calc-btn h-14 rounded-DEFAULT bg-surface-container-high/60 hover:bg-surface-bright active:scale-95 text-secondary font-headline-md text-headline-md flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val="^">
+              x<sup>y</sup>
+</button>
+</div>
+<!-- Extended Scientific Strip (Collapsible / Toggleable) -->
+<div class="grid grid-cols-6 gap-gutter" id="scientificStrip">
+<button class="h-12 rounded-DEFAULT bg-surface-container-low/80 hover:bg-surface-container-high active:scale-95 text-secondary font-label-md text-label-md flex items-center justify-center transition-all shadow-sm backdrop-blur-sm" data-action="sqrt">
+              √x
+            </button>
+<button class="h-12 rounded-DEFAULT bg-surface-container-low/80 hover:bg-surface-container-high active:scale-95 text-secondary font-label-md text-label-md flex items-center justify-center transition-all shadow-sm backdrop-blur-sm" data-action="sin">
+              sin
+            </button>
+<button class="h-12 rounded-DEFAULT bg-surface-container-low/80 hover:bg-surface-container-high active:scale-95 text-secondary font-label-md text-label-md flex items-center justify-center transition-all shadow-sm backdrop-blur-sm" data-action="cos">
+              cos
+            </button>
+<button class="h-12 rounded-DEFAULT bg-surface-container-low/80 hover:bg-surface-container-high active:scale-95 text-secondary font-label-md text-label-md flex items-center justify-center transition-all shadow-sm backdrop-blur-sm" data-action="tan">
+              tan
+            </button>
+<button class="calc-btn h-12 rounded-DEFAULT bg-surface-container-low/80 hover:bg-surface-container-high active:scale-95 text-secondary font-label-md text-label-md flex items-center justify-center transition-all shadow-sm backdrop-blur-sm" data-val="π">
+              π
+            </button>
+<button class="calc-btn h-12 rounded-DEFAULT bg-surface-container-low/80 hover:bg-surface-container-high active:scale-95 text-secondary font-label-md text-label-md flex items-center justify-center transition-all shadow-sm backdrop-blur-sm" data-val="e">
+              e
+            </button>
+</div>
+<!-- Main Matrix & Primary Operations -->
+<div class="grid grid-cols-4 gap-gutter mt-1">
+<!-- Key 7 -->
+<button class="calc-btn h-16 rounded-DEFAULT bg-surface-container/40 hover:bg-surface-container-high/80 active:scale-95 text-on-surface font-headline-lg text-headline-lg flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val="7">
+              7
+            </button>
+<!-- Key 8 -->
+<button class="calc-btn h-16 rounded-DEFAULT bg-surface-container/40 hover:bg-surface-container-high/80 active:scale-95 text-on-surface font-headline-lg text-headline-lg flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val="8">
+              8
+            </button>
+<!-- Key 9 -->
+<button class="calc-btn h-16 rounded-DEFAULT bg-surface-container/40 hover:bg-surface-container-high/80 active:scale-95 text-on-surface font-headline-lg text-headline-lg flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val="9">
+              9
+            </button>
+<!-- Div / -->
+<button class="calc-btn h-16 rounded-DEFAULT bg-secondary-container/50 hover:bg-secondary-container active:scale-95 text-primary font-display-md text-display-md flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val="÷">
+              ÷
+            </button>
+<!-- Key 4 -->
+<button class="calc-btn h-16 rounded-DEFAULT bg-surface-container/40 hover:bg-surface-container-high/80 active:scale-95 text-on-surface font-headline-lg text-headline-lg flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val="4">
+              4
+            </button>
+<!-- Key 5 -->
+<button class="calc-btn h-16 rounded-DEFAULT bg-surface-container/40 hover:bg-surface-container-high/80 active:scale-95 text-on-surface font-headline-lg text-headline-lg flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val="5">
+              5
+            </button>
+<!-- Key 6 -->
+<button class="calc-btn h-16 rounded-DEFAULT bg-surface-container/40 hover:bg-surface-container-high/80 active:scale-95 text-on-surface font-headline-lg text-headline-lg flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val="6">
+              6
+            </button>
+<!-- Mul * -->
+<button class="calc-btn h-16 rounded-DEFAULT bg-secondary-container/50 hover:bg-secondary-container active:scale-95 text-primary font-display-md text-display-md flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val="×">
+              ×
+            </button>
+<!-- Key 1 -->
+<button class="calc-btn h-16 rounded-DEFAULT bg-surface-container/40 hover:bg-surface-container-high/80 active:scale-95 text-on-surface font-headline-lg text-headline-lg flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val="1">
+              1
+            </button>
+<!-- Key 2 -->
+<button class="calc-btn h-16 rounded-DEFAULT bg-surface-container/40 hover:bg-surface-container-high/80 active:scale-95 text-on-surface font-headline-lg text-headline-lg flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val="2">
+              2
+            </button>
+<!-- Key 3 -->
+<button class="calc-btn h-16 rounded-DEFAULT bg-surface-container/40 hover:bg-surface-container-high/80 active:scale-95 text-on-surface font-headline-lg text-headline-lg flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val="3">
+              3
+            </button>
+<!-- Sub - -->
+<button class="calc-btn h-16 rounded-DEFAULT bg-secondary-container/50 hover:bg-secondary-container active:scale-95 text-primary font-display-md text-display-md flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val="-">
+              −
+            </button>
+<!-- Negate +/- -->
+<button class="h-16 rounded-DEFAULT bg-surface-container/40 hover:bg-surface-container-high/80 active:scale-95 text-on-surface font-headline-lg text-headline-lg flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-action="negate">
+              ±
+            </button>
+<!-- Key 0 -->
+<button class="calc-btn h-16 rounded-DEFAULT bg-surface-container/40 hover:bg-surface-container-high/80 active:scale-95 text-on-surface font-headline-lg text-headline-lg flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val="0">
+              0
+            </button>
+<!-- Decimal . -->
+<button class="calc-btn h-16 rounded-DEFAULT bg-surface-container/40 hover:bg-surface-container-high/80 active:scale-95 text-on-surface font-headline-lg text-headline-lg flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val=".">
+              .
+            </button>
+<!-- Add + -->
+<button class="calc-btn h-16 rounded-DEFAULT bg-secondary-container/50 hover:bg-secondary-container active:scale-95 text-primary font-display-md text-display-md flex items-center justify-center transition-all shadow-md backdrop-blur-md" data-val="+">
+              +
+            </button>
+</div>
+<!-- Bottom Action Deck: Equals Key Anchor -->
+<div class="grid grid-cols-4 gap-gutter pt-1">
+<div class="col-span-3 flex items-center px-space-md rounded-DEFAULT bg-surface-container-lowest/40 backdrop-blur-md text-tertiary">
+<span class="material-symbols-outlined text-primary text-[20px] mr-space-sm">keyboard</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Press Enter to calculate • Esc to wipe buffer</span>
+</div>
+<!-- Glowing Equals Anchor -->
+<button class="col-span-1 h-16 rounded-DEFAULT bg-primary-container hover:bg-surface-tint active:scale-95 text-on-primary-container font-headline-lg text-headline-lg font-bold flex items-center justify-center transition-all shadow-[0_0_24px_rgba(181,136,99,0.35)] backdrop-blur-lg" id="equalsBtn">
+              =
+            </button>
+</div>
+</div>
+</div>
+<!-- Chamber 2: Computational Ledger & Audit Tape Drawer -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<!-- Tape Header Card -->
+<div class="rounded-xl bg-surface-container-low/70 backdrop-blur-xl p-space-md shadow-xl flex flex-col">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">receipt_long</span>
+<span class="font-headline-md text-headline-md text-on-surface">Calculations Tape</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-[11px]" id="tapeCountBadge">
+              4 SAVED
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">
+            Live evaluation scratchpad. Click any calculation row to reload its expression into the main screen.
+          </p>
+<!-- Tape Log List Stream -->
+<div class="flex flex-col gap-space-sm max-h-[460px] overflow-y-auto pr-1" id="tapeList">
+<!-- Entry 1 -->
+<div class="tape-item group rounded-DEFAULT bg-surface-container-high/40 hover:bg-surface-container-high/90 p-space-md cursor-pointer transition-all shadow-sm">
+<div class="flex items-center justify-between text-tertiary font-label-sm text-label-sm mb-1">
+<span>√(256) ^ 3</span>
+<span class="text-[11px] text-tertiary/50">14:02:11</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-on-surface font-medium">= 4,096</span>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+<button class="p-1 rounded-full hover:bg-surface-bright text-primary" title="Recall">
+<span class="material-symbols-outlined text-[16px]">history_toggle_off</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Entry 2 -->
+<div class="tape-item group rounded-DEFAULT bg-surface-container-high/40 hover:bg-surface-container-high/90 p-space-md cursor-pointer transition-all shadow-sm">
+<div class="flex items-center justify-between text-tertiary font-label-sm text-label-sm mb-1">
+<span>1,250 + 18%</span>
+<span class="text-[11px] text-tertiary/50">13:58:44</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-on-surface font-medium">= 1,475</span>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+<button class="p-1 rounded-full hover:bg-surface-bright text-primary" title="Recall">
+<span class="material-symbols-outlined text-[16px]">history_toggle_off</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Entry 3: Error State handling representation -->
+<div class="tape-item group rounded-DEFAULT bg-surface-container-high/40 hover:bg-surface-container-high/90 p-space-md cursor-pointer transition-all shadow-sm">
+<div class="flex items-center justify-between text-tertiary font-label-sm text-label-sm mb-1">
+<span>98 ÷ 0</span>
+<span class="text-[11px] text-error font-medium uppercase">Zero Division</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-error flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[16px]">error</span>
+                  Undefined
+                </span>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+<button class="p-1 rounded-full hover:bg-surface-bright text-tertiary" title="Recall">
+<span class="material-symbols-outlined text-[16px]">history_toggle_off</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Entry 4 -->
+<div class="tape-item group rounded-DEFAULT bg-surface-container-high/40 hover:bg-surface-container-high/90 p-space-md cursor-pointer transition-all shadow-sm">
+<div class="flex items-center justify-between text-tertiary font-label-sm text-label-sm mb-1">
+<span>sin(45) × 100</span>
+<span class="text-[11px] text-tertiary/50">13:42:09</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-on-surface font-medium">= 70.7106</span>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+<button class="p-1 rounded-full hover:bg-surface-bright text-primary" title="Recall">
+<span class="material-symbols-outlined text-[16px]">history_toggle_off</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Metric Engine Mini Dashboard -->
+<div class="rounded-xl bg-surface-container-low/50 backdrop-blur-xl p-space-md shadow-lg flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Engine Telemetry</span>
+<span class="flex items-center gap-1 text-[11px] font-label-sm text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> OK
+            </span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm text-left">
+<div class="p-space-sm rounded-DEFAULT bg-surface-container-lowest/50">
+<span class="font-label-sm text-[11px] text-tertiary block mb-0.5">Execution Latency</span>
+<span class="font-headline-md text-headline-md text-on-surface">0.42 ms</span>
+</div>
+<div class="p-space-sm rounded-DEFAULT bg-surface-container-lowest/50">
+<span class="font-label-sm text-[11px] text-tertiary block mb-0.5">Registers</span>
+<span class="font-headline-md text-headline-md text-on-surface">8/8 Free</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function () {
+    const mainDisplay = document.getElementById('mainDisplay');
+    const expressionDisplay = document.getElementById('expressionDisplay');
+    const syntaxBadge = document.getElementById('syntaxBadge');
+    const tapeList = document.getElementById('tapeList');
+    const copyResultBtn = document.getElementById('copyResultBtn');
+    const clearTapeBtn = document.getElementById('clearTapeBtn');
+    const tapeCountBadge = document.getElementById('tapeCountBadge');
+    
+    let currentInput = '3,644';
+    let currentExpression = '250 \u00D7 14 + \u221A(144) ^ 2';
+    let isEvaluated = false;
+
+    function formatNumber(numStr) {
+      const clean = numStr.replace(/,/g, '');
+      if (isNaN(clean) || clean === '') return numStr;
+      const parts = clean.split('.');
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      return parts.join('.');
+    }
+
+    function updateBadge(valid, label = 'SYNTAX VALID') {
+      if (valid) {
+        syntaxBadge.className = 'flex items-center gap-1 text-[11px] font-label-sm tracking-wider uppercase px-space-sm py-0.5 rounded-full bg-surface-container-high text-primary font-medium';
+        syntaxBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-primary"></span><span>${label}</span>`;
+      } else {
+        syntaxBadge.className = 'flex items-center gap-1 text-[11px] font-label-sm tracking-wider uppercase px-space-sm py-0.5 rounded-full bg-error-container text-error font-medium';
+        syntaxBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span><span>${label}</span>`;
+      }
+    }
+
+    function addTapeRecord(expr, res, isErr = false) {
+      const now = new Date();
+      const timeStr = now.toTimeString().substring(0, 8);
+      const card = document.createElement('div');
+      card.className = 'tape-item group rounded-DEFAULT bg-surface-container-high/40 hover:bg-surface-container-high/90 p-space-md cursor-pointer transition-all shadow-sm';
+      
+      if (isErr) {
+        card.innerHTML = `
+          <div class="flex items-center justify-between text-tertiary font-label-sm text-label-sm mb-1">
+            <span>${expr}</span>
+            <span class="text-[11px] text-error font-medium uppercase">Error</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="font-body-md text-body-md text-error flex items-center gap-1 font-medium">
+              <span class="material-symbols-outlined text-[16px]">error</span>
+              ${res}
+            </span>
+          </div>
+        `;
+      } else {
+        card.innerHTML = `
+          <div class="flex items-center justify-between text-tertiary font-label-sm text-label-sm mb-1">
+            <span>${expr}</span>
+            <span class="text-[11px] text-tertiary/50">${timeStr}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="font-headline-md text-headline-md text-on-surface font-medium">= ${res}</span>
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+              <button class="p-1 rounded-full hover:bg-surface-bright text-primary" title="Recall">
+                <span class="material-symbols-outlined text-[16px]">history_toggle_off</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      card.addEventListener('click', () => {
+        currentExpression = expr;
+        currentInput = res;
+        expressionDisplay.textContent = expr;
+        mainDisplay.textContent = res;
+        updateBadge(true);
+      });
+
+      tapeList.prepend(card);
+      const total = tapeList.querySelectorAll('.tape-item').length;
+      tapeCountBadge.textContent = `${total} SAVED`;
+    }
+
+    // Input handlers
+    document.querySelectorAll('.calc-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = btn.dataset.val;
+        if (isEvaluated) {
+          if (['+', '-', '\u00D7', '\u00F7', '^', '%'].includes(val)) {
+            currentExpression = currentInput + ' ' + val + ' ';
+            currentInput = '0';
+          } else {
+            currentExpression = '';
+            currentInput = val;
+          }
+          isEvaluated = false;
+        } else {
+          if (['+', '-', '\u00D7', '\u00F7', '^', '%'].includes(val)) {
+            currentExpression += ' ' + currentInput + ' ' + val + ' ';
+            currentInput = '0';
+          } else {
+            if (currentInput === '0' && val !== '.') {
+              currentInput = val;
+            } else {
+              currentInput += val;
+            }
+          }
+        }
+        mainDisplay.textContent = formatNumber(currentInput);
+        expressionDisplay.textContent = currentExpression || '0';
+        updateBadge(true);
+      });
+    });
+
+    // Action handlers
+    document.querySelectorAll('[data-action]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const action = btn.dataset.action;
+        if (action === 'all-clear') {
+          currentInput = '0';
+          currentExpression = '';
+          isEvaluated = false;
+          mainDisplay.textContent = '0';
+          expressionDisplay.textContent = '0';
+          updateBadge(true);
+        } else if (action === 'delete') {
+          if (currentInput.length > 1) {
+            currentInput = currentInput.slice(0, -1);
+          } else {
+            currentInput = '0';
+          }
+          mainDisplay.textContent = formatNumber(currentInput);
+        } else if (action === 'negate') {
+          if (currentInput.startsWith('-')) {
+            currentInput = currentInput.substring(1);
+          } else if (currentInput !== '0') {
+            currentInput = '-' + currentInput;
+          }
+          mainDisplay.textContent = formatNumber(currentInput);
+        } else if (action === 'sqrt') {
+          const num = parseFloat(currentInput.replace(/,/g, ''));
+          if (num < 0) {
+            updateBadge(false, 'INVALID SQRT');
+            return;
+          }
+          const res = Math.sqrt(num).toString();
+          addTapeRecord(`\u221A(${currentInput})`, res);
+          currentInput = res;
+          mainDisplay.textContent = formatNumber(res);
+          isEvaluated = true;
+        } else if (action === 'sin' || action === 'cos' || action === 'tan') {
+          const num = parseFloat(currentInput.replace(/,/g, ''));
+          let res = 0;
+          if (action === 'sin') res = Math.sin(num);
+          if (action === 'cos') res = Math.cos(num);
+          if (action === 'tan') res = Math.tan(num);
+          res = Number(res.toFixed(8)).toString();
+          addTapeRecord(`${action}(${currentInput})`, res);
+          currentInput = res;
+          mainDisplay.textContent = formatNumber(res);
+          isEvaluated = true;
+        }
+      });
+    });
+
+    // Equals evaluation
+    function computeResult() {
+      const fullExpr = (currentExpression + ' ' + currentInput).trim();
+      let parseExpr = fullExpr
+        .replace(/\u00D7/g, '*')
+        .replace(/\u00F7/g, '/')
+        .replace(/\^/g, '**')
+        .replace(/π/g, Math.PI.toString())
+        .replace(/e/g, Math.E.toString())
+        .replace(/,/g, '');
+
+      try {
+        if (parseExpr.includes('/ 0')) {
+          throw new Error('Zero Division');
+        }
+        // Basic sanitized evaluation
+        const result = Function('"use strict";return (' + parseExpr + ')')();
+        const cleanRes = Number.isFinite(result) ? (Math.round(result * 100000000) / 100000000).toString() : 'Error';
+        
+        if (cleanRes === 'Error') {
+          updateBadge(false, 'MATH OVERFLOW');
+          addTapeRecord(fullExpr, 'Overflow', true);
+        } else {
+          addTapeRecord(fullExpr, formatNumber(cleanRes));
+          currentExpression = fullExpr + ' =';
+          currentInput = cleanRes;
+          expressionDisplay.textContent = currentExpression;
+          mainDisplay.textContent = formatNumber(cleanRes);
+          isEvaluated = true;
+          updateBadge(true, 'CALCULATED');
+        }
+      } catch (err) {
+        updateBadge(false, 'SYNTAX FAULT');
+        addTapeRecord(fullExpr, err.message || 'Syntax Error', true);
+      }
+    }
+
+    document.getElementById('equalsBtn').addEventListener('click', computeResult);
+
+    // Copy to clipboard
+    copyResultBtn.addEventListener('click', () => {
+      const textToCopy = mainDisplay.textContent.trim();
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        updateBadge(true, 'COPIED TO BUFFER');
+        setTimeout(() => updateBadge(true), 2000);
+      });
+    });
+
+    // Clear Tape
+    clearTapeBtn.addEventListener('click', () => {
+      tapeList.innerHTML = '<div class="text-center py-8 font-body-sm text-on-surface-variant">Tape buffer cleared.</div>';
+      tapeCountBadge.textContent = '0 SAVED';
+    });
+
+    // Keyboard support
+    window.addEventListener('keydown', (e) => {
+      if (e.key >= '0' && e.key <= '9') {
+        const btn = document.querySelector(`[data-val="${e.key}"]`);
+        if (btn) btn.click();
+      } else if (e.key === '.') {
+        const btn = document.querySelector('[data-val="."]');
+        if (btn) btn.click();
+      } else if (e.key === '+') {
+        const btn = document.querySelector('[data-val="+"]');
+        if (btn) btn.click();
+      } else if (e.key === '-') {
+        const btn = document.querySelector('[data-val="-"]');
+        if (btn) btn.click();
+      } else if (e.key === '*') {
+        const btn = document.querySelector('[data-val="\u00D7"]');
+        if (btn) btn.click();
+      } else if (e.key === '/') {
+        e.preventDefault();
+        const btn = document.querySelector('[data-val="\u00F7"]');
+        if (btn) btn.click();
+      } else if (e.key === 'Enter' || e.key === '=') {
+        e.preventDefault();
+        document.getElementById('equalsBtn').click();
+      } else if (e.key === 'Backspace') {
+        const btn = document.querySelector('[data-action="delete"]');
+        if (btn) btn.click();
+      } else if (e.key === 'Escape') {
+        const btn = document.querySelector('[data-action="all-clear"]');
+        if (btn) btn.click();
+      }
+    });
+  })();
+</script></div><footer class="w-full bg-surface-container-lowest/40 backdrop-blur-xl mt-space-xl py-space-lg"><div class="max-w-7xl mx-auto px-margin lg:px-margin-desktop flex flex-col sm:flex-row items-center justify-between gap-space-md text-center sm:text-left"><div class="flex items-center gap-space-sm text-on-surface-variant font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span><span>PRECISION GLASS ENGINE v3.4</span></div><div class="font-body-sm text-body-sm text-on-surface-variant">© 2024 AuraCalc Systems. Atmospheric Computing Engine.</div><div class="flex items-center gap-space-md font-label-sm text-label-sm text-on-surface-variant"><a class="hover:text-on-surface transition-colors" data-path="documentation" href="#">Docs</a><a class="hover:text-on-surface transition-colors" data-path="shortcuts" href="#">Shortcuts</a></div></div></footer></main></body></html>
